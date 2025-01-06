@@ -34,7 +34,14 @@ app.configure(services)
 // Register hooks that run on all service methods
 app.hooks({
   around: {
-    all: []
+    all: [
+      // Add a logger hook to illustrate how the express route doesn't go through here
+      async (context, next) => {
+        console.log('Before', context.method, context.path, context.id)
+        await next()
+        console.log('After', context.method, context.path, context.id)
+      }
+    ]
   },
   before: {},
   after: {},
