@@ -1,10 +1,10 @@
 import type { Application } from '../../declarations'
-import { Id, NullableId, Service } from '@feathersjs/feathers'
+import { Id, NullableId, Service, ServiceMethods } from '@feathersjs/feathers'
 
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    users: Service
+    users: Service<unknown>
   }
 }
 
@@ -35,5 +35,5 @@ export const user = (app: Application) => {
     update: async (id: NullableId, data: any) => data,
     patch: async (id: NullableId, data: any) => data,
     remove: async (id: NullableId) => []
-  } satisfies Service)
+  } satisfies ServiceMethods<unknown>)
 }

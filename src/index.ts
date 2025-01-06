@@ -6,6 +6,8 @@ const host = app.get('host') ?? 'localhost'
 
 process.on('unhandledRejection', (reason, p) => logger.error('Unhandled Rejection at: Promise ', p, reason))
 
-app.listen(port).then(() => {
+const server = app.listen(port)
+
+server.on('listening', () => {
   logger.info(`Feathers app listening on http://${host}:${port}`)
 })
